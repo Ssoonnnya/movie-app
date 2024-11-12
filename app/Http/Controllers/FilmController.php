@@ -32,6 +32,11 @@ class FilmController extends Controller
             'youtube_trailer_id' => 'required|string',
             'release_year' => 'required|integer',
             'status' => 'required|in:show,hide',
+            'casts' => 'array',
+            'casts.*.role' => 'required|string',
+            'casts.*.name_uk' => 'required|string',
+            'casts.*.name_en' => 'required|string',
+            'casts.*.photo' => 'nullable|image',
         ]);
 
         if ($request->hasFile('poster')) {
@@ -42,15 +47,30 @@ class FilmController extends Controller
             $validated['screenshots'] = array_map(function ($file) {
                 return $file->store('screenshots', 'public');
             }, $request->file('screenshots'));
-
             $validated['screenshots'] = json_encode($validated['screenshots']);
         }
 
-        Film::create($validated);
+        $film = Film::create($validated);
+
+        if ($request->has('casts')) {
+            foreach ($request->input('casts') as $castData) {
+
+                $cast = new Cast([
+                    'role' => $castData['role'],
+                    'name_uk' => $castData['name_uk'],
+                    'name_en' => $castData['name_en'],
+                ]);
+
+                if (isset($castData['photo'])) {
+                    $cast->photo = $castData['photo']->store('cast_photos', 'public');
+                }
+
+                $film->cast()->save($cast);
+            }
+        }
 
         return redirect()->route('admin.films.index');
     }
-
 
     public function edit(Film $film)
     {
@@ -69,6 +89,11 @@ class FilmController extends Controller
             'youtube_trailer_id' => 'required|string',
             'release_year' => 'required|integer',
             'status' => 'required|in:show,hide',
+            'casts' => 'array',
+            'casts.*.role' => 'required|string',
+            'casts.*.name_uk' => 'required|string',
+            'casts.*.name_en' => 'required|string',
+            'casts.*.photo' => 'nullable|image',
         ]);
 
         $film->update($validated);
@@ -81,11 +106,40 @@ class FilmController extends Controller
             $film->screenshots = array_map(function ($file) {
                 return $file->store('public/screenshots');
             }, $request->file('screenshots'));
-
             $film->screenshots = json_encode($film->screenshots);
         }
 
         $film->save();
+
+        if ($request->has('casts')) {
+            foreach ($request->input('casts') as $castData) {
+
+                if (isset($castData['id'])) {
+                    $cast = Cast::find($castData['id']);
+                    $cast->update([
+                        'role' => $castData['role'],
+                        'name_uk' => $castData['name_uk'],
+                        'name_en' => $castData['name_en'],
+                    ]);
+
+                    if (isset($castData['photo'])) {
+                        $cast->photo = $castData['photo']->store('cast_photos', 'public');
+                    }
+                } else {
+                    $cast = new Cast([
+                        'role' => $castData['role'],
+                        'name_uk' => $castData['name_uk'],
+                        'name_en' => $castData['name_en'],
+                    ]);
+
+                    if (isset($castData['photo'])) {
+                        $cast->photo = $castData['photo']->store('cast_photos', 'public');
+                    }
+
+                    $film->casts()->save($cast);
+                }
+            }
+        }
 
         return redirect()->route('admin.films.index');
     }

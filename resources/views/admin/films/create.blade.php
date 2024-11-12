@@ -53,43 +53,43 @@
                 <input type="number" name="release_year" id="release_year" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
             </div>
 
-{{--            <!-- Fields for Casts -->--}}
-{{--            <div>--}}
-{{--                <h3 class="text-xl font-semibold text-gray-800 mb-4">Cast</h3>--}}
+            <!-- Fields for Casts -->
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Cast</h3>
 
-{{--                <div id="casts-container">--}}
-{{--                    <div class="cast-entry space-y-4 mb-4">--}}
-{{--                        <div>--}}
-{{--                            <label for="casts[0][role]" class="block text-sm font-medium text-gray-700 mb-2">Role:</label>--}}
-{{--                            <select name="casts[0][role]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">--}}
-{{--                                <option value="director">Director</option>--}}
-{{--                                <option value="screenwriter">Screenwriter</option>--}}
-{{--                                <option value="actor">Actor</option>--}}
-{{--                                <option value="composer">Composer</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
+                <div id="casts-container">
+                    <div class="cast-entry space-y-4 mb-4">
+                        <div>
+                            <label for="casts[0][role]" class="block text-sm font-medium text-gray-700 mb-2">Role:</label>
+                            <select name="casts[0][role]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="director">Director</option>
+                                <option value="screenwriter">Screenwriter</option>
+                                <option value="actor">Actor</option>
+                                <option value="composer">Composer</option>
+                            </select>
+                        </div>
 
-{{--                        <div>--}}
-{{--                            <label for="casts[0][name_uk]" class="block text-sm font-medium text-gray-700 mb-2">Name (Ukrainian):</label>--}}
-{{--                            <input type="text" name="casts[0][name_uk]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>--}}
-{{--                        </div>--}}
+                        <div>
+                            <label for="casts[0][name_uk]" class="block text-sm font-medium text-gray-700 mb-2">Name (Ukrainian):</label>
+                            <input type="text" name="casts[0][name_uk]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
 
-{{--                        <div>--}}
-{{--                            <label for="casts[0][name_en]" class="block text-sm font-medium text-gray-700 mb-2">Name (English):</label>--}}
-{{--                            <input type="text" name="casts[0][name_en]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>--}}
-{{--                        </div>--}}
+                        <div>
+                            <label for="casts[0][name_en]" class="block text-sm font-medium text-gray-700 mb-2">Name (English):</label>
+                            <input type="text" name="casts[0][name_en]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
 
-{{--                        <div>--}}
-{{--                            <label for="casts[0][photo]" class="block text-sm font-medium text-gray-700 mb-2">Photo:</label>--}}
-{{--                            <input type="file" name="casts[0][photo]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                        <div>
+                            <label for="casts[0][photo]" class="block text-sm font-medium text-gray-700 mb-2">Photo:</label>
+                            <input type="file" name="casts[0][photo]" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
 
-{{--                <button type="button" onclick="addCast()" class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">--}}
-{{--                    Add Another Cast--}}
-{{--                </button>--}}
-{{--            </div>--}}
+                <button type="button" onclick="addCast()" class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Add Another Cast
+                </button>
+            </div>
 
             <div>
                 <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">

@@ -75,6 +75,37 @@
                             </select>
                         </div>
 
+                        <h2 class="text-xl font-semibold mt-6">Edit Cast</h2>
+
+                        @foreach ($film->cast as $index => $cast)
+                            <div class="mb-4 border-t border-gray-300 pt-4">
+                                <h3 class="text-lg font-medium">Cast Member #{{ $index + 1 }}</h3>
+
+                                <input type="hidden" name="casts[{{ $index }}][id]" value="{{ $cast->id }}">
+
+                                <label class="block text-sm font-medium text-gray-700">Role:</label>
+                                <select name="casts[{{ $index }}][role]" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm">
+                                    <option value="director" {{ $cast->role == 'director' ? 'selected' : '' }}>Director</option>
+                                    <option value="screenwriter" {{ $cast->role == 'screenwriter' ? 'selected' : '' }}>Screenwriter</option>
+                                    <option value="actor" {{ $cast->role == 'actor' ? 'selected' : '' }}>Actor</option>
+                                    <option value="composer" {{ $cast->role == 'composer' ? 'selected' : '' }}>Composer</option>
+                                </select>
+
+                                <label class="block text-sm font-medium text-gray-700">Name (Ukrainian):</label>
+                                <input type="text" name="casts[{{ $index }}][name_uk]" value="{{ $cast->name_uk }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm" required>
+
+                                <label class="block text-sm font-medium text-gray-700">Name (English):</label>
+                                <input type="text" name="casts[{{ $index }}][name_en]" value="{{ $cast->name_en }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm" required>
+
+                                <label class="block text-sm font-medium text-gray-700">Photo:</label>
+                                <input type="file" name="casts[{{ $index }}][photo]" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm">
+                                @if($cast->photo)
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/' . $cast->photo) }}" alt="Current Photo" class="w-16 h-auto">
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
                         <button type="submit" class="btn btn-primary">Update Film</button>
                     </form>
                 </div>
