@@ -21,4 +21,9 @@ class Cast extends Model
     {
         return $this->belongsTo(Film::class);
     }
+    public function getNameAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{'name_' . $locale};
+    }
 }

@@ -13,19 +13,20 @@ class TagSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        foreach (range(1, 10) as $index) {
+            $tag = Tag::create([
+                'name_uk' => $faker->word,
+                'name_en' => $faker->word,
+                'slug' => $faker->slug,
+            ]);
+        }
 
         $films = Film::all();
 
         foreach ($films as $film) {
 
-            foreach (range(1, rand(1, 3)) as $index) {
-                $tag = Tag::create([
-                    'name_uk' => $faker->word,
-                    'name_en' => $faker->word,
-                    'slug' => $faker->slug,
-                    'film_id' => $film->id,
-                ]);
-            }
+            $tags = Tag::inRandomOrder()->take(rand(1, 3))->pluck('id');
+            $film->tags()->attach($tags);
         }
     }
 }

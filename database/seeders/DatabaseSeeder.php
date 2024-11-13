@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
             'role' => 'user',
         ]);
 
-        $this->call(
-            FilmSeeder::class,
-            TagSeeder::class,
-        );
+//        $this->call(
+//            FilmSeeder::class,
+//            TagSeeder::class,
+//        );
     }
 }

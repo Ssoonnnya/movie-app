@@ -12,4 +12,14 @@ class UserFilmController extends Controller
         $films = Film::paginate(10);
 
         return view('dashboard', compact('films'));
-    }}
+    }
+    public function show($id)
+    {
+        $film = Film::with('cast')->findOrFail($id);
+
+        if ($film->status === 'hide') {
+            abort(404);
+        }
+        return view('user.films.show', compact('film'));
+    }
+}

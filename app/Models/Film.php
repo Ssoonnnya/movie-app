@@ -26,4 +26,19 @@ class Film extends Model
     {
         return $this->hasMany(Cast::class);
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'film_tag');
+    }
+    public function getTitleAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{'title_' . $locale};
+    }
+
+    public function getDescriptionAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{'description_' . $locale};
+    }
 }

@@ -9,7 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h1 class="text-2xl font-semibold mb-4">Каталог фільмів</h1>
+                    <h1 class="text-2xl font-semibold mb-4">{{ __('Film Catalog') }}</h1>
+
+                    <!-- Links for changing language -->
+
+                    <a href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">English</a>
+                    <a href="{{ LaravelLocalization::getLocalizedURL('uk', null, [], true) }}">Українська</a>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($films as $film)
                             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -20,10 +26,10 @@
 
                                 <!-- Film Details -->
                                 <div class="p-4">
-                                    <h3 class="text-xl font-semibold mb-2">{{ $film->title_uk }}</h3>
-                                    <p class="text-sm text-gray-600 mb-1">Статус: <span class="font-medium">{{ $film->status }}</span></p>
+                                    <h3 class="text-xl font-semibold mb-2">
+                                        <a href="{{ route('films.show', $film->id) }}">{{ $film->title }}</a>
+                                    </h3>
                                     <p class="text-sm text-gray-600 mb-4">Рік випуску: <span class="font-medium">{{ $film->release_year }}</span></p>
-
 
                                     <!-- Screenshots -->
                                     @php

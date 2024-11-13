@@ -22,4 +22,8 @@ class Tag extends Model
             }
         });
     }
+    public function films()
+    {
+        return $this->belongsToMany(Film::class, 'film_tag');
+    }
 }
