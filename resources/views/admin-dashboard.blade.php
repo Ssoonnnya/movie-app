@@ -13,6 +13,7 @@
                     <a href="{{ route('admin.films.create') }}" class="btn btn-primary mb-4">Додати фільм</a>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
                         @foreach($films as $film)
                             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                                 <!-- Poster Image -->
@@ -26,6 +27,8 @@
                                     <p class="text-sm text-gray-600 mb-1">Статус: <span class="font-medium">{{ $film->status }}</span></p>
                                     <p class="text-sm text-gray-600 mb-4">Рік випуску: <span class="font-medium">{{ $film->release_year }}</span></p>
 
+                                    <!-- Add Tag Link -->
+                                    <a href="{{ route('films.tags.create', $film) }}" class="text-blue-500 hover:underline">Add Tag</a>
 
                                     <!-- Screenshots -->
                                     @php
@@ -56,7 +59,7 @@
                         @endforeach
                     </div>
 
-                    <!-- Pagination -->
+                        <!-- Pagination -->
                     <div class="mt-6">
                         {{ $films->links() }}
                     </div>

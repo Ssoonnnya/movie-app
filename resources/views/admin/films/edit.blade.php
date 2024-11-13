@@ -106,6 +106,23 @@
                                 @endif
                             </div>
                         @endforeach
+
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Tags:</label>
+                            <ul class="list-disc pl-5">
+                                @foreach ($film->tags as $tag)
+                                    <li class="flex justify-between items-center">
+                                        <span>{{ $tag->name_en }}</span>
+                                        <form action="{{ route('admin.tags.delete', $tag) }}" method="POST" class="ml-2">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                        </form>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                         <button type="submit" class="btn btn-primary">Update Film</button>
                     </form>
                 </div>

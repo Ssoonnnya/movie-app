@@ -16,6 +16,7 @@ class UserFilmController extends Controller
     public function show($id)
     {
         $film = Film::with('cast')->findOrFail($id);
+        $film->load('tags');
 
         if ($film->status === 'hide') {
             abort(404);

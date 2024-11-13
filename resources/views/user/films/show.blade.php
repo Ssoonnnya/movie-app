@@ -53,10 +53,16 @@
                     <!-- Tags -->
                     <div class="mb-6">
                         <h3 class="text-xl font-semibold mb-2">{{ __('Tags') }}:</h3>
-                        @if($film->tags && count($film->tags) > 0)
+                        @if($film->tags && $film->tags->count() > 0)
                             <ul class="flex gap-2">
                                 @foreach ($film->tags as $tag)
-                                    <li class="px-4 py-2 bg-gray-200 rounded-full">{{ $tag->name }}</li>
+                                    <li class="px-4 py-2 bg-gray-200 rounded-full">
+                                        @if (LaravelLocalization::getCurrentLocale() == 'uk')
+                                            {{ $tag->name_uk }}
+                                        @else
+                                            {{ $tag->name_en }}
+                                        @endif
+                                    </li>
                                 @endforeach
                             </ul>
                         @else

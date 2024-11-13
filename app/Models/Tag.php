@@ -17,8 +17,10 @@ class Tag extends Model
     {
         parent::boot();
         static::creating(function ($tag) {
-            if (empty($tag->slug)) {
-                $tag->slug = Str::slug($tag->name_en ?? $tag->name_uk);
+            if ($tag->name_en) {
+                $tag->slug = Str::slug($tag->name_en);
+            } elseif ($tag->name_uk) {
+                $tag->slug = Str::slug($tag->name_uk);
             }
         });
     }
